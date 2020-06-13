@@ -13,36 +13,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.repository.LibraryRepository;
+import com.example.repository.EditoraRepository;
 
-import libary.models.Livro;
+import libary.models.Editora;
 @CrossOrigin
 @RestController
-@RequestMapping("/livro")
-public class LibraryController {
+@RequestMapping("/editora")
+public class EditoraController {
 	@Autowired
-	private LibraryRepository lr;
+	private EditoraRepository er;
+	
+	//editora
 	
 	@GetMapping(produces="application/json")
-	public @ResponseBody Iterable<Livro> listaLivros() {
-		Iterable<Livro> listaLivros = lr.findAll();
-		return listaLivros;
+	public @ResponseBody Iterable<Editora> listaEditoras() {
+		Iterable<Editora> listaEditoras = er.findAll();
+		return listaEditoras;
 	}
 	
 	@PostMapping()
-	public Livro cadastrarLivro(@RequestBody Livro livro) {
-		return lr.save(livro);
+	public Editora cadastrarEditora(@RequestBody Editora editora) {
+		return er.save(editora);
 	}
 	
 	@DeleteMapping()
-	public Livro deleteLivro(@RequestBody Livro livro) {
-		lr.delete(livro);
-		return livro;
+	public Editora deleteEditora(@RequestBody Editora editora) {
+		er.delete(editora);
+		return editora;
 	}
 	
 	@GetMapping("/{id}")
-	public @ResponseBody Optional<Livro> getLivro(@PathVariable("id") String id) {
-		return lr.findById(id);
+	public @ResponseBody Optional<Editora> getEditora(@PathVariable("id") String id) {
+		return er.findById(id);
 	}
+	
 	
 }
